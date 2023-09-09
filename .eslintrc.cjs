@@ -15,6 +15,7 @@ module.exports = {
     'no-duplicate-imports': 'error',
     'react/react-in-jsx-scope': 'off',
     camelcase: 'error',
-    quotes: ['error', 'single']
+    quotes: ['error', 'single'],
+    indent: ['error', 2, { ignoredNodes: ['JSXElement', 'JSXElement *'] }]
   }
 };
