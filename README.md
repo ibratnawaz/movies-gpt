@@ -7,3 +7,5 @@
 - Vite
 - Jest
 - Tailwind
+- Preittier
+- ESlint
