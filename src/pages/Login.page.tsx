@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { atom, useAtom } from 'jotai';
 import Header from '../components/Header';
 
+const signingStatusAtom = atom(true);
 const Login = () => {
-  const [isSigningIn, setIsSigningIn] = useState(true);
+  const [isSigningIn, setIsSigningIn] = useAtom(signingStatusAtom);
 
   return (
     <>
@@ -52,6 +53,7 @@ function CardFooter(props: paraProps) {
     <p className="py-4 text-gray-400 tracking-wider text-sm">
       {text}
       <span
+        role="presentation"
         className="underline cursor-pointer ml-1"
         onClick={() => setIsSigningIn((status) => !status)}>
         {linkText}
