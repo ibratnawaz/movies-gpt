@@ -2,13 +2,14 @@ import { atom, useAtom } from 'jotai';
 import Header from '../components/Header';
 
 const signingStatusAtom = atom(true);
+
 const Login = () => {
   const [isSigningIn, setIsSigningIn] = useAtom(signingStatusAtom);
 
   return (
     <>
       <Header />
-      <div className='w-screen h-screen relative bg-[url("bg-login-banner.jpg")]'>
+      <div className='w-screen h-screen relative bg-[url("/bg-login-banner.jpg")]'>
         <div className="w-screen h-screen bg-gray-950 opacity-60"></div>
         <div className="w-full md:h-fit p-12 md:w-3/12 h-full absolute bg-black text-white rounded-lg bg-opacity-80 mt-8 sm:m-auto left-0 right-0 top-0 bottom-0">
           <h1 className="font-bold text-3xl py-4 font-sans">
