@@ -1,4 +1,5 @@
 import { atom } from 'jotai';
+import type { User } from 'firebase/auth';
 
-export const isLoggedIn = atom(false);
-export const userInfo = atom(null);
+export const isUserLoggedInAtom = atom(false);
+export const userInfoAtom = atom<null | User>(null);
