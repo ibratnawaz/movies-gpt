@@ -1,6 +1,5 @@
 import { useRef, useEffect, type BaseSyntheticEvent } from 'react';
 import { atom, useAtom } from 'jotai';
-import Header from '../components/Header';
 import { UserFormData, signInUser, signUpUser } from '../service/auth';
 import { isUserLoggedInAtom, userInfoAtom } from '../store/global.atom.store';
 import { useNavigate } from 'react-router-dom';
@@ -10,9 +9,9 @@ const signingStatusAtom = atom(true);
 const loadingStatusAtom = atom(false);
 const errorAtom = atom<string | null>(null);
 
-const Login = () => {
+export function Component() {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useAtom(isUserLoggedInAtom);
+  const [isLoggedIn] = useAtom(isUserLoggedInAtom);
   const [, setUserInfo] = useAtom(userInfoAtom);
 
   const [isSigningIn, setIsSigningIn] = useAtom(signingStatusAtom);
@@ -52,7 +51,6 @@ const Login = () => {
         const resp = await signUpUser(user);
         setUserInfo(resp);
       }
-      setIsLoggedIn(true);
       navigate('/about');
       // eslint-disable-next-line
     } catch (error: any) {
@@ -70,58 +68,53 @@ const Login = () => {
   };
 
   return (
-    <>
-      <Header />
-      <div className='w-screen h-screen relative bg-[url("/bg-login-banner.jpg")]'>
-        <div className="w-screen h-screen bg-gray-950 opacity-60"></div>
-        <div className="w-full md:h-fit p-12 md:w-3/12 h-full absolute bg-black text-white rounded-lg bg-opacity-80 mt-8 sm:m-auto left-0 right-0 top-0 bottom-0">
-          <h1 className="font-bold text-3xl py-4 font-sans">
-            {isSigningIn ? 'Sign In' : 'Sign Up'}
-          </h1>
-          <form onSubmit={submitFormHandler}>
-            {!isSigningIn && (
-              <input
-                type="text"
-                name="username"
-                placeholder="Full Name"
-                className="p-4 my-4 w-full bg-zinc-800"
-              />
-            )}
+    <div className='w-screen h-screen relative bg-[url("/bg-login-banner.jpg")]'>
+      <div className="w-screen h-screen bg-gray-950 opacity-60"></div>
+      <div className="w-full md:h-fit p-12 md:w-3/12 h-full absolute bg-black text-white rounded-lg bg-opacity-80 mt-8 sm:m-auto left-0 right-0 top-0 bottom-0">
+        <h1 className="font-bold text-3xl py-4 font-sans">{isSigningIn ? 'Sign In' : 'Sign Up'}</h1>
+        <form onSubmit={submitFormHandler}>
+          {!isSigningIn && (
             <input
               type="text"
-              name="email"
+              name="username"
+              placeholder="Full Name"
               className="p-4 my-4 w-full bg-zinc-800"
-              placeholder="email"
             />
-            <input
-              type="password"
-              name="password"
-              className="p-4 my-4 w-full bg-zinc-800"
-              placeholder="password"
+          )}
+          <input
+            type="text"
+            name="email"
+            className="p-4 my-4 w-full bg-zinc-800"
+            placeholder="email"
+          />
+          <input
+            type="password"
+            name="password"
+            className="p-4 my-4 w-full bg-zinc-800"
+            placeholder="password"
+          />
+          <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
+          <button disabled={isLoading} className="p-4 my-6 bg-red-700 w-full rounded-lg">
+            {isSigningIn ? 'Sign In' : 'Sign Up'}
+          </button>
+          {isSigningIn ? (
+            <CardFooter
+              text="New to Netflix?"
+              linkText="Sign Up Now."
+              setIsSigningIn={setIsSigningIn}
             />
-            <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
-            <button disabled={isLoading} className="p-4 my-6 bg-red-700 w-full rounded-lg">
-              {isSigningIn ? 'Sign In' : 'Sign Up'}
-            </button>
-            {isSigningIn ? (
-              <CardFooter
-                text="New to Netflix?"
-                linkText="Sign Up Now."
-                setIsSigningIn={setIsSigningIn}
-              />
-            ) : (
-              <CardFooter
-                text="Already an existing member?"
-                linkText="Login Now."
-                setIsSigningIn={setIsSigningIn}
-              />
-            )}
-          </form>
-        </div>
+          ) : (
+            <CardFooter
+              text="Already an existing member?"
+              linkText="Login Now."
+              setIsSigningIn={setIsSigningIn}
+            />
+          )}
+        </form>
       </div>
-    </>
+    </div>
   );
-};
+}
 
 type paraProps = {
   text: string;
@@ -144,5 +137,3 @@ function CardFooter(props: paraProps) {
     </p>
   );
 }
-
-export default Login;

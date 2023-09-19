@@ -1,31 +1,35 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom';
-import About from './pages/About.page';
-import Login from './pages/Login.page';
+import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import ErrorPage from './pages/Error.page';
 
 const router = createBrowserRouter([
   {
     path: '/',
+    lazy: () => import('./pages/Home.page'),
     children: [
       {
-        path: '/about',
-        element: <About />
+        path: 'about',
+        lazy: () => import('./pages/About.page')
       },
       {
-        path: '/login',
-        element: <Login />
-      },
-      {
-        path: '',
-        element: <Navigate to="/login" />
+        path: 'login',
+        lazy: () => import('./pages/Login.page')
       },
       {
         path: '*',
-        element: <Navigate to="/login" />
+        element: <ErrorPage />
       }
     ],
     errorElement: <ErrorPage />
   }
 ]);
+
+// TODO: Above router object equivalent to JSX way
+createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/">
+      <Route index lazy={() => import('./pages/Home.page')} />
+    </Route>
+  )
+);
 
 export default router;

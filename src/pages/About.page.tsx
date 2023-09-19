@@ -1,12 +1,10 @@
-import Header from '../components/Header';
+import { json, useLoaderData } from 'react-router-dom';
 
-const About = () => {
-  return (
-    <>
-      <Header />
-      <div>About Page</div>
-    </>
-  );
-};
+export async function loader() {
+  return json({ isLoggedIn: true, user: { email: 'abc@xyz.com' } });
+}
 
-export default About;
+export function Component() {
+  const data = useLoaderData();
+  return <p className="mt-20">{JSON.stringify(data, null, 2)}</p>;
+}
