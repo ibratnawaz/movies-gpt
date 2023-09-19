@@ -14,7 +14,8 @@
     "trailing-comma": "off",
     "no-duplicate-imports": "error",
     "react/react-in-jsx-scope": 0,
-    "camelcase": "warn"
+    "camelcase": "warn",
+    "react-hooks/exhaustive-deps": 0
   },
   "plugins": ["react", "import", "jsx-a11y"],
   "parserOptions": {

@@ -1,9 +1,10 @@
 import { useRef, useEffect, type BaseSyntheticEvent } from 'react';
 import { atom, useAtom } from 'jotai';
 import { UserFormData, signInUser, signUpUser } from '../service/auth';
-import { isUserLoggedInAtom, userInfoAtom } from '../store/global.atom.store';
+import { userInfoAtom } from '../store/global.atom.store';
 import { useNavigate } from 'react-router-dom';
 import { APP_CONSTANTS } from '../app.constant';
+import { AuthenticatorHOC } from '../components/AuthenticatorHOC';
 
 const signingStatusAtom = atom(true);
 const loadingStatusAtom = atom(false);
@@ -11,7 +12,6 @@ const errorAtom = atom<string | null>(null);
 
 export function Component() {
   const navigate = useNavigate();
-  const [isLoggedIn] = useAtom(isUserLoggedInAtom);
   const [, setUserInfo] = useAtom(userInfoAtom);
 
   const [isSigningIn, setIsSigningIn] = useAtom(signingStatusAtom);
@@ -20,17 +20,12 @@ export function Component() {
   const timerRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
-    if (isLoggedIn) {
-      navigate('/about');
-    }
-
     return () => {
       clearTimeout(timerRef.current as NodeJS.Timeout);
       setIsLoading(false);
       setIsSigningIn(true);
       setErrorMessage(null);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const submitFormHandler = async (e: BaseSyntheticEvent) => {
@@ -52,7 +47,7 @@ export function Component() {
         setUserInfo(resp);
       }
       navigate('/about');
-      // eslint-disable-next-line
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.message.includes(APP_CONSTANTS.FIREBASE_INVALID_DETAILS)) {
         setErrorMessage(APP_CONSTANTS.INVALID_CREDENTIALS);
@@ -67,6 +62,35 @@ export function Component() {
     }
   };
 
+  const AuthenticatedLogin = AuthenticatorHOC(Login, 'login');
+
+  return (
+    <AuthenticatedLogin
+      isSigningIn={isSigningIn}
+      submitFormHandler={submitFormHandler}
+      errorMessage={errorMessage}
+      isLoading={isLoading}
+      setIsSigningIn={setIsSigningIn}
+    />
+  );
+}
+
+type LoginProps = {
+  isSigningIn: boolean;
+  submitFormHandler: (e: BaseSyntheticEvent) => Promise<void>;
+  errorMessage: string | null;
+  isLoading: boolean;
+  setIsSigningIn: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+};
+
+type paraProps = {
+  text: string;
+  linkText: string;
+  setIsSigningIn: (value: React.SetStateAction<boolean>) => void;
+};
+
+function Login(props: LoginProps) {
+  const { isSigningIn, submitFormHandler, errorMessage, isLoading, setIsSigningIn } = props;
   return (
     <div className='w-screen h-screen relative bg-[url("/bg-login-banner.jpg")]'>
       <div className="w-screen h-screen bg-gray-950 opacity-60"></div>
@@ -94,7 +118,9 @@ export function Component() {
             placeholder="password"
           />
           <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
-          <button disabled={isLoading} className="p-4 my-6 bg-red-700 w-full rounded-lg">
+          <button
+            disabled={isLoading}
+            className="p-4 my-6 bg-red-700 w-full rounded-lg disabled:opacity-75">
             {isSigningIn ? 'Sign In' : 'Sign Up'}
           </button>
           {isSigningIn ? (
@@ -115,12 +141,6 @@ export function Component() {
     </div>
   );
 }
-
-type paraProps = {
-  text: string;
-  linkText: string;
-  setIsSigningIn: (value: React.SetStateAction<boolean>) => void;
-};
 
 function CardFooter(props: paraProps) {
   const { text, linkText, setIsSigningIn } = props;

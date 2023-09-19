@@ -1,7 +1,8 @@
 import { useRouteError, Link } from 'react-router-dom';
 
 function ErrorPage() {
-  const error: any = useRouteError(); // eslint-disable-line
+  const error: any = useRouteError(); // eslint-disable-line @typescript-eslint/no-explicit-any
+
   console.log(error);
   return (
     <div className="container mx-auto px-4 font-sans flex flex-col justify-center h-screen items-center">

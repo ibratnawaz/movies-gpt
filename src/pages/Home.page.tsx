@@ -3,7 +3,7 @@ import Header from '../components/Header';
 
 export type LoaderProps = {
   request: Request;
-  params: any; // eslint-disable-line
+  params: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
 
 export async function loader() {
