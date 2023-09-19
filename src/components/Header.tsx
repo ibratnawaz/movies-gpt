@@ -23,15 +23,19 @@ const Header = () => {
         <img className="w-44 md:mx-0 sm:mx-0" src="app-logo.png" alt="app-logo" />
       </Link>
       {isLoggedIn ? (
-        <div className="flex p-2 justify-between">
-          <img className="hidden md:block w-10 h-10 mr-2" alt="usericon" src="/user-icon.png" />
-          <button onClick={signOutHandler} className="font-bold text-white text-sm">
-            (Sign Out)
-          </button>
+        <div
+          role="presentation"
+          onClick={signOutHandler}
+          className="font-bold text-white text-sm p-2 flex justify-center items-center flex-col gap-1 cursor-pointer">
+          <img className="hidden md:block w-8 h-8" alt="user icon by Icons8" src="/user-icon.png" />
+          <span>Sign Out</span>
         </div>
       ) : (
-        <Link to="/login" className="mt-5 font-bold text-white text-sm">
-          Sign In
+        <Link
+          to="/login"
+          className="font-bold text-white text-sm p-2 flex justify-center items-center flex-col gap-1">
+          <img className="w-10" alt="login icon by Icons8" src="/login-icon.png" />
+          <span>Sign In</span>
         </Link>
       )}
     </div>
