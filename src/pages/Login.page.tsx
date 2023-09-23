@@ -92,35 +92,35 @@ type paraProps = {
 function Login(props: LoginProps) {
   const { isSigningIn, submitFormHandler, errorMessage, isLoading, setIsSigningIn } = props;
   return (
-    <div className='w-screen h-screen relative bg-[url("/bg-login-banner.jpg")]'>
-      <div className="w-screen h-screen bg-gray-950 opacity-60"></div>
-      <div className="w-full md:h-fit p-12 md:w-3/12 h-full absolute bg-black text-white rounded-lg bg-opacity-80 mt-8 sm:m-auto left-0 right-0 top-0 bottom-0">
-        <h1 className="font-bold text-3xl py-4 font-sans">{isSigningIn ? 'Sign In' : 'Sign Up'}</h1>
+    <div className='relative h-screen w-screen bg-[url("/bg-login-banner.jpg")]'>
+      <div className="h-screen w-screen bg-gray-950 opacity-60"></div>
+      <div className="absolute bottom-0 left-0 right-0 top-0 mt-8 h-full w-full rounded-lg bg-black bg-opacity-80 p-12 text-white sm:m-auto md:h-fit md:w-3/12">
+        <h1 className="py-4 font-sans text-3xl font-bold">{isSigningIn ? 'Sign In' : 'Sign Up'}</h1>
         <form onSubmit={submitFormHandler}>
           {!isSigningIn && (
             <input
               type="text"
               name="username"
               placeholder="Full Name"
-              className="p-4 my-4 w-full bg-zinc-800"
+              className="my-4 w-full bg-zinc-800 p-4"
             />
           )}
           <input
             type="text"
             name="email"
-            className="p-4 my-4 w-full bg-zinc-800"
+            className="my-4 w-full bg-zinc-800 p-4"
             placeholder="email"
           />
           <input
             type="password"
             name="password"
-            className="p-4 my-4 w-full bg-zinc-800"
+            className="my-4 w-full bg-zinc-800 p-4"
             placeholder="password"
           />
-          <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
+          <p className="py-2 text-lg font-bold text-red-500">{errorMessage}</p>
           <button
             disabled={isLoading}
-            className="p-4 my-6 bg-red-700 w-full rounded-lg disabled:opacity-75">
+            className="my-6 w-full rounded-lg bg-red-700 p-4 disabled:opacity-75">
             {isSigningIn ? 'Sign In' : 'Sign Up'}
           </button>
           {isSigningIn ? (
@@ -146,11 +146,11 @@ function CardFooter(props: paraProps) {
   const { text, linkText, setIsSigningIn } = props;
 
   return (
-    <p className="py-4 text-gray-400 tracking-wider text-sm">
+    <p className="py-4 text-sm tracking-wider text-gray-400">
       {text}
       <span
         role="presentation"
-        className="underline cursor-pointer ml-1"
+        className="ml-1 cursor-pointer underline"
         onClick={() => setIsSigningIn((status) => !status)}>
         {linkText}
       </span>

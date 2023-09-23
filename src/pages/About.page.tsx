@@ -6,5 +6,5 @@ export async function loader() {
 
 export function Component() {
   const data = useLoaderData();
-  return <p className="flex text-white py-20">{JSON.stringify(data, null, 2)}</p>;
+  return <p className="flex py-20 text-white">{JSON.stringify(data, null, 2)}</p>;
 }

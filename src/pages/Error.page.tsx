@@ -5,8 +5,8 @@ function ErrorPage() {
 
   console.log(error);
   return (
-    <div className="container mx-auto px-4 font-sans flex flex-col justify-center h-screen items-center">
-      <div className="font-sans text-3xl text-gray-400 italic tracking-wide">
+    <div className="container mx-auto flex h-screen flex-col items-center justify-center px-4 font-sans">
+      <div className="font-sans text-3xl italic tracking-wide text-gray-400">
         {!error ? (
           <p>Sorry, the page you are looking doesn&apos;t exists.</p>
         ) : (
@@ -15,7 +15,7 @@ function ErrorPage() {
             <code className="text-lg">{error?.stack}</code>
             <Link
               to="/"
-              className="block w-32 text-center mt-4 text-lg border border-black rounded bg-gray-700 text-white p-2">
+              className="mt-4 block w-32 rounded border border-black bg-gray-700 p-2 text-center text-lg text-white">
               Go Home
             </Link>
           </>

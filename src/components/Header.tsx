@@ -18,22 +18,22 @@ const Header = () => {
     }
   };
   return (
-    <div className="absolute top-0 w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between">
+    <div className="absolute top-0 z-10 flex w-screen flex-col justify-between bg-gradient-to-b from-black px-8 py-2 md:flex-row">
       <Link to="/">
-        <img className="w-44 md:mx-0 sm:mx-0" src="app-logo.png" alt="app-logo" />
+        <img className="w-44 sm:mx-0 md:mx-0" src="app-logo.png" alt="app-logo" />
       </Link>
       {isLoggedIn ? (
         <div
           role="presentation"
           onClick={signOutHandler}
-          className="font-bold text-white text-sm p-2 flex justify-center items-center flex-col gap-1 cursor-pointer">
-          <img className="hidden md:block w-8 h-8" alt="user icon by Icons8" src="/user-icon.png" />
+          className="flex cursor-pointer flex-col items-center justify-center gap-1 p-2 text-sm font-bold text-white">
+          <img className="hidden h-8 w-8 md:block" alt="user icon by Icons8" src="/user-icon.png" />
           <span>Sign Out</span>
         </div>
       ) : (
         <Link
           to="/login"
-          className="font-bold text-white text-sm p-2 flex justify-center items-center flex-col gap-1">
+          className="flex flex-col items-center justify-center gap-1 p-2 text-sm font-bold text-white">
           <img className="w-10" alt="login icon by Icons8" src="/login-icon.png" />
           <span>Sign In</span>
         </Link>
