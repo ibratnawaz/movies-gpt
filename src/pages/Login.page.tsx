@@ -1,10 +1,10 @@
 import { useRef, useEffect, type BaseSyntheticEvent } from 'react';
 import { atom, useAtom } from 'jotai';
-import { UserFormData, signInUser, signUpUser } from '../service/auth';
-import { userInfoAtom } from '../store/global.atom.store';
+import { UserFormData, signInUser, signUpUser } from '@/service/auth';
+import { userInfoAtom } from '@/store/global.atom.store';
 import { useNavigate } from 'react-router-dom';
-import { APP_CONSTANTS } from '../app.constant';
-import Authenticator from '../components/AuthenticatorHOC';
+import { APP_CONSTANTS } from '@/app.constant';
+import Authenticator from '@/components/AuthenticatorHOC';
 
 const signingStatusAtom = atom(true);
 const loadingStatusAtom = atom(false);
@@ -47,12 +47,13 @@ export function Component() {
         setUserInfo(resp);
       }
       navigate('/about');
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      if (error.message.includes(APP_CONSTANTS.FIREBASE_INVALID_DETAILS)) {
-        setErrorMessage(APP_CONSTANTS.INVALID_CREDENTIALS);
-      } else {
-        setErrorMessage(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        if (error.message.includes(APP_CONSTANTS.FIREBASE_INVALID_DETAILS)) {
+          setErrorMessage(APP_CONSTANTS.INVALID_CREDENTIALS);
+        } else {
+          setErrorMessage(error.message);
+        }
       }
       timerRef.current = setTimeout(() => {
         setErrorMessage(null);

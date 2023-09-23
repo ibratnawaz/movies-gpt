@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useEffect, type ReactElement } from 'react';
-import { isUserLoggedInAtom } from '../store/global.atom.store';
+import { isUserLoggedInAtom } from '@/store/global.atom.store';
 import { useNavigate } from 'react-router-dom';
 
 type PropsType = {

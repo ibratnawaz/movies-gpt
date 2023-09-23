@@ -44,7 +44,8 @@
     },
     "import/resolver": {
       "typescript": {
-        "alwaysTryTypes": true
+        "alwaysTryTypes": true,
+        "moduleDirectory": ["src", "node_modules"]
       }
     }
   }

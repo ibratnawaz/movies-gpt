@@ -7,7 +7,7 @@ import {
   signOut,
   updateProfile
 } from 'firebase/auth';
-import auth from '../utils/firebase.config';
+import auth from '@/utils/firebase.config';
 
 export type UserFormData = {
   username?: string;
