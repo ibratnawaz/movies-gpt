@@ -4,7 +4,7 @@ import { UserFormData, signInUser, signUpUser } from '../service/auth';
 import { userInfoAtom } from '../store/global.atom.store';
 import { useNavigate } from 'react-router-dom';
 import { APP_CONSTANTS } from '../app.constant';
-import { AuthenticatorHOC } from '../components/AuthenticatorHOC';
+import Authenticator from '../components/AuthenticatorHOC';
 
 const signingStatusAtom = atom(true);
 const loadingStatusAtom = atom(false);
@@ -62,16 +62,16 @@ export function Component() {
     }
   };
 
-  const AuthenticatedLogin = AuthenticatorHOC(Login, 'login');
-
   return (
-    <AuthenticatedLogin
-      isSigningIn={isSigningIn}
-      submitFormHandler={submitFormHandler}
-      errorMessage={errorMessage}
-      isLoading={isLoading}
-      setIsSigningIn={setIsSigningIn}
-    />
+    <Authenticator from="login">
+      <Login
+        isSigningIn={isSigningIn}
+        submitFormHandler={submitFormHandler}
+        errorMessage={errorMessage}
+        isLoading={isLoading}
+        setIsSigningIn={setIsSigningIn}
+      />
+    </Authenticator>
   );
 }
 

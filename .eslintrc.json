@@ -6,6 +6,8 @@
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    // "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:prettier/recommended",
     "prettier"
   ],
@@ -17,13 +19,16 @@
     "camelcase": "warn",
     "react-hooks/exhaustive-deps": 0
   },
-  "plugins": ["react", "import", "jsx-a11y"],
+  "plugins": ["react", "import", "jsx-a11y", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2022,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "project": ["./tsconfig.json", "./tsconfig.node.json"],
+    "ignorePatterns": ["vite.config.ts"]
   },
   "env": {
     "es6": true,
@@ -34,9 +39,12 @@
     "react": {
       "version": "detect"
     },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      "typescript": {
+        "alwaysTryTypes": true
       }
     }
   }

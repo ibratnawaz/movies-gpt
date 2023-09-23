@@ -1,9 +1,14 @@
 import { useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, type ReactElement } from 'react';
 import { isUserLoggedInAtom } from '../store/global.atom.store';
 import { useNavigate } from 'react-router-dom';
 
-export const AuthenticatorHOC = (WrappedComponent: () => JSX.Element, from = '') => {
+type PropsType = {
+  from: string;
+  children?: ReactElement;
+};
+
+const AuthenticatorHOC = ({ from = '', children }: PropsType): ReactElement => {
   const navigate = useNavigate();
   const [isLoggedIn] = useAtom(isUserLoggedInAtom);
 
@@ -15,8 +20,9 @@ export const AuthenticatorHOC = (WrappedComponent: () => JSX.Element, from = '')
     }
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const AuthenticatedComponent = (props: any) => <WrappedComponent {...props} />;
+  if (!children) return <></>;
 
-  return AuthenticatedComponent;
+  return { ...children };
 };
+
+export default AuthenticatorHOC;
