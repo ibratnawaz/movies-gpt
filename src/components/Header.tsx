@@ -20,7 +20,12 @@ const Header = () => {
   return (
     <div className="absolute top-0 z-10 flex w-screen flex-col justify-between bg-gradient-to-b from-black px-8 py-2 md:flex-row">
       <Link to="/">
-        <img className="w-44 sm:mx-0 md:mx-0" src="app-logo.png" alt="app-logo" />
+        <img
+          data-testid="appLogo"
+          className="w-44 sm:mx-0 md:mx-0"
+          src="app-logo.png"
+          alt="app-logo"
+        />
       </Link>
       {isLoggedIn ? (
         <div
@@ -35,7 +40,7 @@ const Header = () => {
           to="/login"
           className="flex flex-col items-center justify-center gap-1 p-2 text-sm font-bold text-white">
           <img className="w-10" alt="login icon by Icons8" src="/login-icon.png" />
-          <span>Sign In</span>
+          <span data-testid="signInText">Sign In</span>
         </Link>
       )}
     </div>

@@ -17,7 +17,8 @@
     "no-duplicate-imports": "error",
     "react/react-in-jsx-scope": 0,
     "camelcase": "warn",
-    "react-hooks/exhaustive-deps": 0
+    "react-hooks/exhaustive-deps": 0,
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
   },
   "plugins": ["react", "import", "jsx-a11y", "@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
@@ -28,7 +29,7 @@
       "jsx": true
     },
     "project": ["./tsconfig.json", "./tsconfig.node.json"],
-    "ignorePatterns": ["vite.config.ts"]
+    "ignorePatterns": ["vite.config.ts", "vitest.config.ts"]
   },
   "env": {
     "es6": true,
