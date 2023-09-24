@@ -29,7 +29,7 @@
       "jsx": true
     },
     "project": ["./tsconfig.json", "./tsconfig.node.json"],
-    "ignorePatterns": ["vite.config.ts", "vitest.config.ts"]
+    "ignorePatterns": ["vite.config.ts", "vitest.config.ts", "coverage/block-navigation.js"]
   },
   "env": {
     "es6": true,

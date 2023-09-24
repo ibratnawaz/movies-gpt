@@ -96,7 +96,9 @@ function Login(props: LoginProps) {
     <div className='relative h-screen w-screen bg-[url("/bg-login-banner.jpg")]'>
       <div className="h-screen w-screen bg-gray-950 opacity-60"></div>
       <div className="absolute bottom-0 left-0 right-0 top-0 mt-8 h-full w-full rounded-lg bg-black bg-opacity-80 p-12 text-white sm:m-auto md:h-fit md:w-3/12">
-        <h1 className="py-4 font-sans text-3xl font-bold">{isSigningIn ? 'Sign In' : 'Sign Up'}</h1>
+        <h1 data-testid="loginForm" className="py-4 font-sans text-3xl font-bold">
+          {isSigningIn ? 'Sign In' : 'Sign Up'}
+        </h1>
         <form onSubmit={submitFormHandler}>
           {!isSigningIn && (
             <input

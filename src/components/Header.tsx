@@ -33,7 +33,7 @@ const Header = () => {
           onClick={signOutHandler}
           className="flex cursor-pointer flex-col items-center justify-center gap-1 p-2 text-sm font-bold text-white">
           <img className="hidden h-8 w-8 md:block" alt="user icon by Icons8" src="/user-icon.png" />
-          <span>Sign Out</span>
+          <span data-testid="signOutText">Sign Out</span>
         </div>
       ) : (
         <Link
