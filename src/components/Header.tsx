@@ -1,7 +1,7 @@
+import { signOutUser } from '@/service/auth';
+import { isUserLoggedInAtom, userInfoAtom } from '@/store/global.atom.store';
 import { useAtom } from 'jotai';
 import { Link, useNavigate } from 'react-router-dom';
-import { isUserLoggedInAtom, userInfoAtom } from '@/store/global.atom.store';
-import { signOutUser } from '@/service/auth';
 
 const Header = () => {
   const navigate = useNavigate();

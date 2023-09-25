@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import auth from '@/utils/firebase.config';
 import {
-  type User,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  updateProfile
+  updateProfile,
+  type User
 } from 'firebase/auth';
-import auth from '@/utils/firebase.config';
 
 export type UserFormData = {
   username?: string;

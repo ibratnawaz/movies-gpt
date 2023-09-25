@@ -1,10 +1,11 @@
-import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import ErrorPage from '@/pages/Error.page';
+import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
     path: '/',
     lazy: () => import('@/pages/Home.page'),
+    shouldRevalidate: () => false,
     children: [
       {
         index: true,

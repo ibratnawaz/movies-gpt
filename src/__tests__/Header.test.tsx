@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { type ReactElement } from 'react';
-import { expect, describe, it, afterEach } from 'vitest';
-import { RenderResult, render } from '@testing-library/react';
-import { StaticRouter } from 'react-router-dom/server';
-import { useHydrateAtoms } from 'jotai/utils';
-import { Provider } from 'jotai';
-import { userInfoAtom } from '@/store/global.atom.store';
 import Header from '@/components/Header';
+import { userInfoAtom } from '@/store/global.atom.store';
+import { RenderResult, render } from '@testing-library/react';
+import { Provider } from 'jotai';
+import { useHydrateAtoms } from 'jotai/utils';
+import { type ReactElement } from 'react';
+import { StaticRouter } from 'react-router-dom/server';
+import { afterEach, describe, expect, it } from 'vitest';
 
 const HydrateAtoms = (props: { initialValues: any; children: ReactElement }) => {
   useHydrateAtoms(props.initialValues);

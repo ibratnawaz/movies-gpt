@@ -1,10 +1,10 @@
-import { useRef, useEffect, type BaseSyntheticEvent } from 'react';
-import { atom, useAtom } from 'jotai';
-import { UserFormData, signInUser, signUpUser } from '@/service/auth';
-import { userInfoAtom } from '@/store/global.atom.store';
-import { useNavigate } from 'react-router-dom';
 import { APP_CONSTANTS } from '@/app.constant';
 import Authenticator from '@/components/AuthenticatorHOC';
+import { UserFormData, signInUser, signUpUser } from '@/service/auth';
+import { userInfoAtom } from '@/store/global.atom.store';
+import { atom, useAtom } from 'jotai';
+import { useEffect, useRef, type BaseSyntheticEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const signingStatusAtom = atom(true);
 const loadingStatusAtom = atom(false);

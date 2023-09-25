@@ -1,5 +1,6 @@
-import { Outlet } from 'react-router-dom';
 import Header from '@/components/Header';
+import { getLatestMovies } from '@/service/movies-api';
+import { Outlet } from 'react-router-dom';
 
 export type LoaderProps = {
   request: Request;
@@ -7,7 +8,8 @@ export type LoaderProps = {
 };
 
 export async function loader() {
-  return null;
+  const data = await getLatestMovies();
+  return data ?? [];
 }
 
 export function Component() {
