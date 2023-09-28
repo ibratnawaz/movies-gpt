@@ -42,7 +42,6 @@ export const usePopularMovies = (url: string, method = 'GET') => {
   }, []);
 
   async function getLatestMovies() {
-    console.log(process.env.API_TOKEN, method);
     try {
       const options: RequestInit = {
         method,

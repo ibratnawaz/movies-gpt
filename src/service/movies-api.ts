@@ -42,7 +42,6 @@ export async function getLatestMovies() {
       options
     );
     const data: LatestMoviesType = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);

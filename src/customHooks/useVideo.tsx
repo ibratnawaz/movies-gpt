@@ -43,7 +43,6 @@ export const useVideo = (url: string, method = 'GET') => {
 
       const response = await fetch(`${APP_CONSTANTS.API_BASE_URL}${url}`, options);
       const data: MovieVideoList = await response.json();
-      console.log(url, data);
       let banner = data.results.find((video) => video.type === 'Trailer');
       if (!banner) {
         banner = data.results[0];
