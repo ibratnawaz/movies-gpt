@@ -47,7 +47,6 @@ function VideoTitle({ overview, title }: PropsTypeTitle) {
   return (
     <div className="w-[100%] h-[100%] z-10 aspect-video pt-[18%] px-6 md:px-24 absolute text-white bg-gradient-to-r from-black">
       <h1 className="text-2xl md:text-6xl font-bold mb-4 lg:mb-0">{title}</h1>
-      {/* <div className="hidden lg:inline-block"> */}
       <p className="hidden lg:inline-block py-6 text-lg w-1/4">{overview}</p>
       <div className="my-4 md:m-0 flex">
         <button className="flex items-center gap-2 bg-white text-black py-1 md:py-2 px-3 md:px-6 text-sm font-semibold  rounded-sm hover:bg-opacity-80">
@@ -58,7 +57,6 @@ function VideoTitle({ overview, title }: PropsTypeTitle) {
           <span>More Info</span>
         </button>
       </div>
-      {/* </div> */}
     </div>
   );
 }
