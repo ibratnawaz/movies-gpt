@@ -27,7 +27,6 @@ export type LatestMoviesType = {
 };
 
 export async function getLatestMovies() {
-  console.log(process.env.API_TOKEN);
   try {
     const options: RequestInit = {
       method: 'GET',

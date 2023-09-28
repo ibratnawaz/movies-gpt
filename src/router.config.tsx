@@ -5,7 +5,6 @@ const router = createBrowserRouter([
   {
     path: '/',
     lazy: () => import('@/pages/Home.page'),
-    shouldRevalidate: () => false,
     children: [
       {
         index: true,

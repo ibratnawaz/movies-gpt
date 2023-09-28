@@ -18,7 +18,7 @@ const Header = () => {
     }
   };
   return (
-    <div className="absolute top-0 z-10 flex w-screen flex-col justify-between bg-gradient-to-b from-black px-8 py-2 md:flex-row">
+    <div className="absolute top-0 z-50 flex w-[100%] flex-col justify-between bg-gradient-to-b from-black px-8 py-2 md:flex-row">
       <Link to="/">
         <img
           data-testid="appLogo"
